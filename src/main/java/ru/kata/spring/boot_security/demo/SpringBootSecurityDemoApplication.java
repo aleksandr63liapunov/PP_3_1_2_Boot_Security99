@@ -18,7 +18,8 @@ public class SpringBootSecurityDemoApplication {
 //	public CommandLineRunner initUser(UserService userService){
 //		return args -> {
 //			User user=new User();
-//			user.setUserName("user");
+//			user.setFirstName("user");
+//			user.setLastName("user");
 //			user.setPassword("123");
 //			userService.saveUser(user);
 //		};
