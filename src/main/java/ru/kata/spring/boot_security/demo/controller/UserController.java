@@ -40,13 +40,13 @@ public class UserController {
     public String userCreate(User user) {
         user.setRoles(Collections.singleton(new Role(1l, "ROLE_USER")));
         userService.saveUser(user);
-        return "redirect:/admin";
+        return "redirect:/adminn";
     }
 
     @GetMapping("user-delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteById(id);
-        return "redirect:/admin";
+        return "redirect:/adminn";
     }
 
     @GetMapping("user-update/{id}")
@@ -59,6 +59,6 @@ public class UserController {
     @PostMapping("/user-update")
     public String userUpdate(User user) {
         userService.saveUser(user);
-        return "redirect:/admin";
+        return "redirect:/adminn";
     }
 }
