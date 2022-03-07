@@ -31,6 +31,8 @@ public class UserController {
         return "userList";     // путь к html файлу(название html)
     }
 
+
+    
     @GetMapping("/user-create")
     public String createUserForm(User user) {
         return "userCreate";
