@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    
 </head>
 <body>
+
 <form action="#" th:action="@{/user-create}" th:object="${user}" method="post">
     <label for="firstName">First name</label>
     <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
     <label for="lastName">Last name</label>
     <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
+    <input type="password" th:field="*{password}" id="password" placeholder="Password">
     <input type="submit" value="Create">
 </form>
 </body>

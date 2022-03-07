@@ -50,7 +50,6 @@ public class UserService implements UserDetailsService {
     }
 
     public User saveUser(User user) {
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userDao.save(user);
     }

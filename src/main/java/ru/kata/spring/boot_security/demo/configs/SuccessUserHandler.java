@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class SuccessUserHandler implements AuthenticationSuccessHandler {
@@ -25,17 +26,14 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (roles.contains("ROLE_ADMIN")) {
-            httpServletResponse.sendRedirect("/admin");
+            httpServletResponse.sendRedirect("/adminn");
         }
-
-
-
-
-        if (roles.contains("ROLE_USER")) {
+        else if (roles.contains("ROLE_USER")) {
             SecurityContext securityContext = SecurityContextHolder.getContext();
-            var w=userService.loadUserByUsername(securityContext.getAuthentication().getName());
-
-            httpServletResponse.sendRedirect("/user/"+w.g);
+            var w=userService.findAll()
+                    .stream().filter(user1->user1.getUsername().equals(securityContext.getAuthentication().getName()))
+                    .collect(Collectors.toList()).stream().findFirst().orElse(null);
+            httpServletResponse.sendRedirect("/user/"+w.getId());
         } else {
             httpServletResponse.sendRedirect("/");
         }
