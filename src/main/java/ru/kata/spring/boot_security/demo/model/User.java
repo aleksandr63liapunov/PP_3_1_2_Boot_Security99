@@ -23,7 +23,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade =  CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles")
     private Set<Role> roles = new HashSet<>();
 

@@ -17,28 +17,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService implements UserServiceInt {
 
     @Autowired
     private UserDao userDao;
+
     @Autowired
     public UserService(UserDao userDao) {
         this.userDao = userDao;
     }
+
     @Autowired
     private PasswordEncoder bCryptPasswordEncoder;
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        var list=userDao.findAll().stream().filter(user1 -> user1.getUsername().equals(username)).collect(Collectors.toList());
-        User user = list.get(0);
-
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-
-        return user;
+    public UserDetails loadUserByUsername(String firstName) throws UsernameNotFoundException {
+        return userDao.getByFirstName(firstName);
     }
+
 
     public User findById(Long id) {
         return userDao.getOne(id);

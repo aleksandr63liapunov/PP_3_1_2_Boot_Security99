@@ -2,14 +2,27 @@
 <html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>ADMIN PANEL</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" href="#"> user.firstName with roles ADMIN USER</a>    <!--добавить админа -->
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
 <div th:switch="${users}">
     <h2 th:case="null">No users found!</h2>
     <div th:case="*">
 
-        <table>
+        <table class="table table-striped active">
             <thead>
             <tr>
                 <th>Id</th>
@@ -23,11 +36,12 @@
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
-                <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
-                <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
+                <td><a th:href="@{user-update/{id}(id=${user.id})}"  class="btn btn-info" role="button" >Edit</a></td>
+                <td><a th:href="@{user-delete/{id}(id=${user.id})}" class="btn btn-danger" >Delete</a></td>
             </tr>
             </tbody>
         </table>
+
     </div>
     <p><a href="/user-create">Create </a></p>
 </div>
