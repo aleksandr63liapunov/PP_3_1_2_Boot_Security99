@@ -15,6 +15,9 @@
     <label for="lastName">Last name</label>
     <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
     <br/>
+    <label for="password">password</label>
+    <input type="password" th:field="*{password}" id="password" placeholder="Password">
+    <br/>
     <input type="submit" value="Update">
 </form>
 <form th:action="@{/logout}" method="post">

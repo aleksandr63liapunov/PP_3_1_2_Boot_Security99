@@ -32,7 +32,8 @@ public class UserService implements UserServiceInt {
 
     @Override
     public UserDetails loadUserByUsername(String firstName) throws UsernameNotFoundException {
-        return userDao.getByFirstName(firstName);
+        var user= userDao.findByFirstName(firstName);
+        return user.iterator().next();
     }
 
 
