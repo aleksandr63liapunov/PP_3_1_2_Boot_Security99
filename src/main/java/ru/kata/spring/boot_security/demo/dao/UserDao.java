@@ -8,6 +8,6 @@ import ru.kata.spring.boot_security.demo.model.User;
 import java.util.Set;
 
 public interface UserDao extends JpaRepository<User, Long> {
-   @Query("select distinct u from User u join fetch u.roles where u.firstName=(:firstName)")
+   @Query("select distinct u from User u join fetch u.roles where u.email=(:email)")
    Set<User> findByEmail(@Param("email") String firstName);
 }

@@ -37,7 +37,8 @@ public class User implements UserDetails {
     }
 
     public int getAge() {
-        return age;
+        return age==null?0:age;
+
     }
 
     public void setAge(int age) {

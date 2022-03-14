@@ -14,7 +14,7 @@
                                        <!--шапка-->
 <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
     <p th:text="${user.email} +' '+ 'with role:' "   ></span></p>
-    <span th:text="${user.roles}"></span>
+    <span th:text="${user.roles[0].name}"></span>
 
     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
         <form th:action="@{/logout}" method="post">
@@ -90,7 +90,7 @@
                                     <td th:text="${user.lastName}"></span></td>
                                     <td th:text="${user.email}"></span></td>
                                     <td th:text="${user.age}"></span></td>
-                                    <td th:text="${user.roles}"></span></td>
+                                    <td th:text="${user.roles[0].name}"></span></td>
                                     <!--                                    <td th:text="${user.password}"></td>-->
 
                                     <td>
@@ -182,16 +182,25 @@
                                                                        th:name="age">
 
                                                             </div>
-                                                            <div class="form-group">
+                                                            <div th:object="${role}" class="form-group">
                                                                 <strong>
                                                                     Role
                                                                 </strong>
                                                                 </label>
-                                                                <select class="form-control">
-                                                                    <option>ADMIN</option>
-                                                                    <option>USER</option>
+                                                                <select th:field="*{id}" >
+                                                                    <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.name}"/>
                                                                 </select>
                                                             </div>
+<!--                                                            <div class="form-group">-->
+<!--                                                                <strong>-->
+<!--                                                                    Role-->
+<!--                                                                </strong>-->
+<!--                                                                </label>-->
+<!--                                                                <select class="form-control">-->
+<!--                                                                    <option>ADMIN</option>-->
+<!--                                                                    <option>USER</option>-->
+<!--                                                                </select>-->
+<!--                                                            </div>-->
 
 
                                                             <div class="modal-footer">
