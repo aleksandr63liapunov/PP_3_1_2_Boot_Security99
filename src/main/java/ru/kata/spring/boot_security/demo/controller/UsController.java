@@ -25,7 +25,7 @@ public class UsController {
     public String getById(@PathVariable Long id, Model model){
     SecurityContext securityContext = SecurityContextHolder.getContext();
     var w=userService.findAll()
-            .stream().filter(user1->user1.getEmail().equals(securityContext.getAuthentication().getName()))
+            .stream().filter(user1->user1.getUsername().equals(securityContext.getAuthentication().getName()))
             .collect(Collectors.toList()).stream().findFirst().orElse(null);
     User users = userService.findById(id);
     model.addAttribute("users", users);  //передать в юз html юз

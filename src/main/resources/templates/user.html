@@ -12,14 +12,14 @@
 <body>
 <!-- шапка-->
 <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
-<p th:text="${user.email} +' '+ 'with role:' "></span></p>
-    <span th:text="${user.roles}"></span>
+    <p th:text="${user.email} +' '+ 'with role:' "   ></span></p>
+    <span th:text="${user.roles[0].name}"></span>
 
-<div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="LOGOUT"/>
-    </form>
-</div>
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="LOGOUT"/>
+        </form>
+    </div>
 </nav>
 
 <!-- КОЛОННА С ЛЕВА-->
@@ -62,7 +62,7 @@
                                 <td th:text="${user.lastName}"></td>
                                 <td th:text="${user.email}"></td>
                                 <td th:text="${user.age}"></td>
-                                <td th:text="${user.roles}"></td>
+                                <td th:text="${user.roles[0].name}"></td>
 
                             </tr>
                             </tbody>
