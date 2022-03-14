@@ -156,7 +156,17 @@
                                                                        th:name="lastName">
 
                                                             </div>
+                                                            <div class="form-group">
+                                                                <strong>
+                                                                    password
+                                                                </strong>
+                                                                </label>
+                                                                <input class="form-control" type="password"
+                                                                       th:value="${user.getPassword()}"
+                                                                       aria-label="password"
+                                                                       th:name="password">
 
+                                                            </div>
 
 
 
@@ -191,16 +201,7 @@
                                                                     <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.name}"/>
                                                                 </select>
                                                             </div>
-<!--                                                            <div class="form-group">-->
-<!--                                                                <strong>-->
-<!--                                                                    Role-->
-<!--                                                                </strong>-->
-<!--                                                                </label>-->
-<!--                                                                <select class="form-control">-->
-<!--                                                                    <option>ADMIN</option>-->
-<!--                                                                    <option>USER</option>-->
-<!--                                                                </select>-->
-<!--                                                            </div>-->
+
 
 
                                                             <div class="modal-footer">

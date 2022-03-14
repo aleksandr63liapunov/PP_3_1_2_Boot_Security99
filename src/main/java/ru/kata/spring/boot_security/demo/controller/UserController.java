@@ -68,6 +68,7 @@ public class UserController {
     public String updateUserForm(@PathVariable("id") Long id,Role role, Model model) {
         User user = userService.findById(id);
         model.addAttribute("roles",roleDao.findAll());
+
         model.addAttribute("user", user);
         return "userUpdate";
     }

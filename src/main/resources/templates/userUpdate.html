@@ -28,6 +28,9 @@
     <label for="age">age</label>
     <input type="number" th:field="*{age}" id="age" placeholder="age">
     <br/>
+    <label for="age">role</label>
+    <input type="text" th:field="*{role}" id="role" placeholder="role">
+    <br/>
     <input  th:method="PUT" type="submit" value="Update">
 </form>
 <form th:action="@{/logout}" method="post">
