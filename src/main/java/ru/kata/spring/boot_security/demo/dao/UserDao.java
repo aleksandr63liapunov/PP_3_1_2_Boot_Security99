@@ -9,5 +9,5 @@ import java.util.Set;
 
 public interface UserDao extends JpaRepository<User, Long> {
    @Query("select distinct u from User u join fetch u.roles where u.firstName=(:firstName)")
-   Set<User> findByFirstName(@Param("firstName") String firstName);
+   Set<User> findByEmail(@Param("email") String firstName);
 }

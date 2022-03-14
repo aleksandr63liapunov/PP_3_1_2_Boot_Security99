@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,6 +23,26 @@ public class User implements UserDetails {
     private String lastName;
     @Column(name = "password")
     private String password;
+    @Column(name = "email",nullable = true)
+    private String email;
+    @Column(name = "age")
+    private Integer age;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     @ManyToMany(cascade =  CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles")
@@ -99,4 +120,16 @@ public class User implements UserDetails {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", roles=" + roles +
+                '}';
+    }
 }

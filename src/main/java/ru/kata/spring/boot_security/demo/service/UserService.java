@@ -31,8 +31,8 @@ public class UserService implements UserServiceInt {
     private PasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String firstName) throws UsernameNotFoundException {
-        var user= userDao.findByFirstName(firstName);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        var user= userDao.findByEmail(email);
         return user.iterator().next();
     }
 

@@ -1,38 +1,80 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1>User, welcome spring boot security page!</h1>
-<div th:switch="${users}">
-    <h2 th:case="null">No users found!</h2>
-    <div th:case="*">
+<!-- шапка-->
+<nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+<p th:text="${user.email} +' '+ 'with role:' "></span></p>
+    <span th:text="${user.roles}"></span>
 
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>First name</th>
-                <th>Last name</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!--/*@thymesVar id="users" type="java"*/-->
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.firstName}"></td>
-                <td th:text="${user.lastName}"></td>
-
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
+<div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="LOGOUT"/>
+    </form>
 </div>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="LOGOUT"/>
-</form>
+</nav>
+
+<!-- КОЛОННА С ЛЕВА-->
+<div class="row">
+    <!--    Left-->
+    <div class="col-3">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab"
+               aria-controls="v-pills-user" aria-selected="true">User</a>
+        </div>
+    </div>
+    <!--    Right-->
+    <div class="col-9 bg-light text-dark">
+        <div class="tab-content" id="v-pills-tabContent">
+            <!--            ТАБЛИЦА-->
+            <div class="tab-pane fade show active" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
+                <h1>User information-page</h1>
+                <h5>About user</h5>
+
+                <div class="container" th:switch="${users}">
+                    <h2 th:case="null">No users found!</h2>
+                    <div th:case="*">
+
+                        <table class="table table-striped active">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>email</th>
+                                <th>age</th>
+                                <th>role</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!--/*@thymesVar id="users" type="java"*/-->
+                            <tr th:each="user : ${users}">
+                                <td th:text="${user.id}"></td>
+                                <td th:text="${user.firstName}"></td>
+                                <td th:text="${user.lastName}"></td>
+                                <td th:text="${user.email}"></td>
+                                <td th:text="${user.age}"></td>
+                                <td th:text="${user.roles}"></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

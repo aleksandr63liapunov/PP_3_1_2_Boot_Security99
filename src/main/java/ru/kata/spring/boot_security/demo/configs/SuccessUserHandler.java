@@ -31,7 +31,7 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
         else if (roles.contains("ROLE_USER")) {
             SecurityContext securityContext = SecurityContextHolder.getContext();
             var w=userService.findAll()
-                    .stream().filter(user1->user1.getUsername().equals(securityContext.getAuthentication().getName()))
+                    .stream().filter(user1->user1.getEmail().equals(securityContext.getAuthentication().getName()))
                     .collect(Collectors.toList()).stream().findFirst().orElse(null);
             httpServletResponse.sendRedirect("/user/"+w.getId());
         } else {

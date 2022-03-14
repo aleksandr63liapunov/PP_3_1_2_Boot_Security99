@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
@@ -25,6 +26,8 @@ public class SpringBootSecurityDemoApplication {
 				user.setFirstName("admin");
 				user.setLastName("admin");
 				user.setPassword("admin");
+				user.setEmail("admin@mail");
+				user.setAge(2);
 				user.setRoles(Collections.singleton(new Role(2l, "ROLE_ADMIN")));
 				userService.saveUser(user);
 			}
