@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/adminn")  //(ввод в браузере)
-    public String findAll(Model model) {
+    public String findAll(Role role,Model model) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         var w=userService.findAll()
                 .stream().filter(user1->user1.getUsername().equals(securityContext.getAuthentication().getName()))
@@ -38,7 +38,7 @@ public class UserController {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);  //передать в юз html юз
         model.addAttribute("user", w);  //передать в юз html юз
-
+        model.addAttribute("roles",roleDao.findAll());
         return "userList";     // путь к html файлу(название html)
     }
 
@@ -68,7 +68,6 @@ public class UserController {
     public String updateUserForm(@PathVariable("id") Long id,Role role, Model model) {
         User user = userService.findById(id);
         model.addAttribute("roles",roleDao.findAll());
-
         model.addAttribute("user", user);
         return "userUpdate";
     }
